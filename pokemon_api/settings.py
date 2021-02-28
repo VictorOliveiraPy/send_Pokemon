@@ -1,12 +1,15 @@
 from pathlib import Path
 
+from decouple import config, Csv
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '^05o-h06=1(81x(%_29)@56qgj8$h2+i02v()i$gm)ops-kp&&'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.17.165.58']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+
 
 # Application definition
 
@@ -21,6 +24,8 @@ INSTALLED_APPS = [
     'core',
 
     'django_celery_results',
+    'django_celery_beat',
+    'rest_framework',
 
 ]
 
@@ -107,3 +112,10 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

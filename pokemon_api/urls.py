@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core.api.api import poke_info
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', poke_info.as_view())
+
+
 ]
