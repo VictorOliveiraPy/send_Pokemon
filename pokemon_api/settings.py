@@ -6,7 +6,7 @@ SECRET_KEY = '^05o-h06=1(81x(%_29)@56qgj8$h2+i02v()i$gm)ops-kp&&'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.31.3.42']
+ALLOWED_HOSTS = ['3.17.165.58/']
 
 # Application definition
 
