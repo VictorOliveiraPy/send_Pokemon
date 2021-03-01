@@ -2,6 +2,8 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from django.core.mail import send_mail
 
+from pokemon_api.celery import app
+
 
 @shared_task
 def add(x, y):
@@ -29,3 +31,12 @@ def send_relatorio():
     )
 
     return True
+
+
+import logging
+
+
+@app.task
+def test(data_hora):
+    logging.debug('data_hora', data_hora)
+    print(data_hora)

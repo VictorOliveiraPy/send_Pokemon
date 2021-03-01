@@ -5,7 +5,6 @@ from core.models import Pokemon
 
 
 class poke_info(generics.CreateAPIView):
-
     queryset = Pokemon.objects.all()
     serializer_class = PokemonSerializer
 

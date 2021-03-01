@@ -10,7 +10,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
-
 # Application definition
 
 INSTALLED_APPS = [
