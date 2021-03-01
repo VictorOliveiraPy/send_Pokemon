@@ -1,8 +1,9 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
-from django.core.mail import send_mail
-
-from pokemon_api.celery import app
+from .tools import EnviarEmail
+from .tools import atualizar_envio
+from .models import Pokemon
+from datetime import date
 
 
 @shared_task
@@ -20,23 +21,19 @@ def xsum(numbers):
     return sum(numbers)
 
 
-@shared_task()
-def send_relatorio():
-    send_mail(
-        'Subjer here',
-        'hERE is the message',
-        'victorblog410@gmail.com',
-        ['victorblog410@gmail.com'],
-        fail_silently=False,
-    )
+@shared_task
+def enviar_emial():
+    enviar = EnviarEmail()
+    data_atual = date.today()
+    pokemon = Pokemon.objects.filter(enviar=False, agendamento=data_atual)
+    for destinario in pokemon:
+        enviar.enviar_email(
+            'Treinado Pokemon',
+            'Olaaa karai pega logo',
+            'victorblog410@gmail.com',
+            destinario.email
+
+        )
+        atualizar_envio(destinario.email)
 
     return True
-
-
-import logging
-
-
-@app.task
-def test(data_hora):
-    logging.debug('data_hora', data_hora)
-    print(data_hora)
