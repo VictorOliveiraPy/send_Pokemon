@@ -9,3 +9,5 @@ class poke_info(generics.CreateAPIView):
     serializer_class = PokemonSerializer
 
 
+
+

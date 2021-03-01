@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 
 from core.api.api import poke_info
+from core.views import ListaPokemonAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', poke_info.as_view())
-
+    path('', poke_info.as_view()),
+    path('todos_pokmon/', ListaPokemonAPIView.as_view())
 
 ]

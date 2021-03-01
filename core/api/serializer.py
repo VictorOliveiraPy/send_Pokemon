@@ -9,13 +9,4 @@ class PokemonSerializer(serializers.ModelSerializer):
         model = Pokemon
         fields = '__all__'
 
-    def create(self, validated_data):
-        print(validated_data)
-        app.conf.on = {
-            'add-every-30-seconds': {
-                'task': 'tasks.test',
-                'schedule': 5.0,
-                'args': [validated_data]
-            },
-        }
-        return super().create(validated_data)
+
