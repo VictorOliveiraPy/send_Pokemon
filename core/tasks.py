@@ -29,7 +29,7 @@ def enviar_emial():
     for destinario in pokemon:
         enviar.enviar_email(
             'Treinado Pokemon',
-            'Olaaa karai pega logo',
+            'pokemon',
             'victorblog410@gmail.com',
             destinario.email
 
